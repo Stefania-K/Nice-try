@@ -65,6 +65,14 @@ def get_col(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
+    c = []
+    for i in range(len(grid)):
+    	for j in range(len(grid[i])):
+    		i, j = pos
+    while i <= len(grid):
+    	c.append(grid[i][j])
+    	i += 1
+    return c
     pass
 
 
