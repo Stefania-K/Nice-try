@@ -34,8 +34,7 @@ def group(values: List[str], n: int) -> List[List[str]]:
     while last < len(values):
         out.append(values[last:last + l])
         last += l
-    return out  
-    pass
+    return out
 
 
 def get_row(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
@@ -52,7 +51,6 @@ def get_row(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     	for j in range(len(grid[i])):
     		i, j = pos
     return grid[i]
-    pass
 
 
 def get_col(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
@@ -73,7 +71,6 @@ def get_col(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     	c.append(grid[i][j])
     	i += 1
     return c
-    pass
 
 
 def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
@@ -87,7 +84,52 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
-    pass
+    c = []
+    for ele in grid:
+        ele  = group(ele, 3) 
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            i, j = pos
+    if i in range(3):
+        if j in range(3):
+            for i in range(3):
+                for j in range(3):
+                    c.append(grid[i][j])
+        elif j in range(3, 6):
+            for i in range(3):
+                for j in range(3, 6):
+                    C.append(grid[i][j])
+        elif j in range(6, 9):
+            for i in range(3):
+                for j in range(6, 9):
+                    c.append(grid[i][j])
+    elif i in range(3, 6):
+        if j in range(3):
+            for i in range(3, 6):
+                for j in range(3):
+                    c.append(grid[i][j])
+        elif j in range(3, 6):
+            for i in range(3, 6):
+                for j in range(3, 6):
+                    c.append(grid[i][j])
+        elif j in range(6, 9):
+            for i in range(3, 6):
+                for j in range(6, 9):
+                    c.append(grid[i][j])
+    elif i in range(6, 9):
+        if j in range(3):
+            for i in range(6, 9):
+                for j in range(3):
+                    c.append(grid[i][j])
+        elif j in range(3, 6):
+            for i in range(6, 9):
+                for j in range(3, 6):
+                    c.apppend(grid[i][j])
+        elif j in range(6, 9):
+            for i in range(6, 9):
+                for j in range(6, 9):
+                    c.append(grid[i][j])
+    return c   
 
 
 def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:
