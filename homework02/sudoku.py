@@ -239,15 +239,6 @@ def generate_sudoku(N: int) -> List[List[str]]:
     >>> check_solution(solution)
     True
     """
-    grid = solve([['.'] * 9 for _ in range(9)])
-    N = 81 - min(81, max(0, N))
-    while N:
-        i = random.randint(0, 8)
-        j = random.randint(0, 8)
-        if grid[i][j] != '.':
-            grid[i][j] = '.'
-            N -= 1
-    return grid
 
 
 if __name__ == '__main__':
