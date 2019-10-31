@@ -27,13 +27,13 @@ def group(values: List[str], n: int) -> List[List[str]]:
     >>> group([1,2,3,4,5,6,7,8,9], 3)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
-    l = len(values) // n
-    out = []
-    last = 0
-    while last < len(values):
-        out.append(values[last:last + l])
-        last += l
-    return out
+    grp_size = len(values) // n
+    groups = []
+    i = 0
+    while i < len(values):
+        group.append(values[i:i + grp_size])
+        i += grp_size
+    return groups
 
 
 def get_row(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
@@ -45,10 +45,7 @@ def get_row(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_row([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (2, 0))
     ['.', '8', '9']
     """
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            i, j = pos
-    return grid[i]
+    return grid[pos[0]]
 
 
 def get_col(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
@@ -60,11 +57,11 @@ def get_col(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
-    c = []
-    _, j = pos
-    for i in range(len(grid)):
-        c.append(grid[i][j])
-    return c
+    col_values = []
+    _, ci = pos
+    for ri in range(len(grid)):
+        col_values.append(grid[ri][ci])
+    return col_values
 
 
 def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
@@ -77,50 +74,14 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
-    c = []
-    for d in grid:
-        d = group(d, 3)
+    block = []
     i, j = pos
-    if i in range(3):
-        if j in range(3):
-            for i in range(3):
-                for j in range(3):
-                    c.append(grid[i][j])
-        elif j in range(3, 6):
-            for i in range(3):
-                for j in range(3, 6):
-                    c.append(grid[i][j])
-        elif j in range(6, 9):
-            for i in range(3):
-                for j in range(6, 9):
-                    c.append(grid[i][j])
-    elif i in range(3, 6):
-        if j in range(3):
-            for i in range(3, 6):
-                for j in range(3):
-                    c.append(grid[i][j])
-        elif j in range(3, 6):
-            for i in range(3, 6):
-                for j in range(3, 6):
-                    c.append(grid[i][j])
-        elif j in range(6, 9):
-            for i in range(3, 6):
-                for j in range(6, 9):
-                    c.append(grid[i][j])
-    elif i in range(6, 9):
-        if j in range(3):
-            for i in range(6, 9):
-                for j in range(3):
-                    c.append(grid[i][j])
-        elif j in range(3, 6):
-            for i in range(6, 9):
-                for j in range(3, 6):
-                    c.append(grid[i][j])
-        elif j in range(6, 9):
-            for i in range(6, 9):
-                for j in range(6, 9):
-                    c.append(grid[i][j])
-    return c
+    bi = (i // 3) * 3
+    bj = (j // 3) * 3
+    for k in range 3:
+        for n in range 3:
+            block.append(grid[bi+k][bi+n])
+    return block
 
 
 def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:
