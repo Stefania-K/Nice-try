@@ -1,4 +1,5 @@
 from typing import Tuple, List, Set, Optional
+import random
 
 
 def read_sudoku(filename: str) -> List[List[str]]:
@@ -31,7 +32,7 @@ def group(values: List[str], n: int) -> List[List[str]]:
     groups = []
     i = 0
     while i < len(values):
-        group.append(values[i:i + grp_size])
+        groups.append(values[i:i + grp_size])
         i += grp_size
     return groups
 
@@ -78,9 +79,9 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     i, j = pos
     bi = (i // 3) * 3
     bj = (j // 3) * 3
-    for k in range 3:
-        for n in range 3:
-            block.append(grid[bi+k][bi+n])
+    for k in range (3):
+        for n in range (3):
+            block.append(grid[bi+k][bj+n])
     return block
 
 
