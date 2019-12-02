@@ -24,7 +24,7 @@ class GameOfLife:
         # Максимальное число поколений
         self.max_generations = max_generations
         # Текущее число поколений
-        self.n_generations = 1
+        self.n_generation = 1
 
     def create_grid(self, randomize: bool=False) -> Grid:
         grid = []
@@ -82,7 +82,7 @@ class GameOfLife:
         """
         self.prev_generation = deepcopy(self.curr_generation)
         self.curr_generation = self.get_next_generation()
-        self.n_generations += 1
+        self.n_generation += 1
 
 
     @property
@@ -90,7 +90,7 @@ class GameOfLife:
         """
         Не превысило ли текущее число поколений максимально допустимое.
         """
-        if self.n_generations >= self.max_generations:
+        if self.n_generation >= self.max_generations:
             return True
         else:
             return False
