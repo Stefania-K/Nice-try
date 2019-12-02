@@ -38,7 +38,7 @@ class GameOfLife:
         pygame.display.set_caption('Game of Life')
         self.screen.fill(pygame.Color('white'))
 
-        def create_grid(self, randomize: bool=False) -> Grid:
+    def create_grid(self, randomize: bool=False) -> Grid:
         grid = []
         for i in range(self.cols):
             grid.append([None] * self.rows)
