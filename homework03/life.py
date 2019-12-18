@@ -37,6 +37,7 @@ class GameOfLife:
                 else: 
                     grid[i][j] = 0
         return grid
+    
 
     def get_neighbours(self, cell: Cell) -> Cells:
         row, col = cell
@@ -134,4 +135,7 @@ class GameOfLife:
             for row in self.rows:
                 for ch in row:
                     f.write(''.join(str(ch)) + '\n')
-    
+
+if __name__ == "__main__":
+    game = GameOfLife((20, 20), True, 100)
+    game.run()
