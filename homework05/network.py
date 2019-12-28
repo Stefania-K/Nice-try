@@ -1,4 +1,4 @@
-from api_network import get_friends
+from api import get_friends
 import igraph
 from igraph import Graph, plot
 import numpy as np
