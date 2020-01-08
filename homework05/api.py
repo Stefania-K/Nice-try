@@ -5,7 +5,7 @@ import config
 import random
 
 
-def get(url, params={}, timeout=5, max_retries=5, backoff_factor=0.3):
+def get(url, params = {}, timeout = 5, max_retries = 5, backoff_factor = 0.3):
     """ Выполнить GET-запрос
     :param url: адрес, на который необходимо выполнить запрос
     :param params: параметры запроса
@@ -15,7 +15,7 @@ def get(url, params={}, timeout=5, max_retries=5, backoff_factor=0.3):
     """
     for i in range(max_retries):
         try:
-            res = requests.get(url, params=params, timeout=timeout)
+            res = requests.get(url, params = params, timeout = timeout)
             return res
         except requests.exceptions.RequestException:
             if i == max_retries - 1:
@@ -33,23 +33,23 @@ def get_friends(user_id, fields):
     assert isinstance(fields, str), "fields must be string"
     assert user_id > 0, "user_id must be positive integer"
     domain = "https://api.vk.com/method"
-    access_token ="e1f2c26462052ab4e08fb55aeb997b12e28a0e80954c152072cad8c6615c09c3d6dcc5406cd7f3709f300"
-    user_id = "https://vk.com/id236397155"
+    access_token ="ed97a6d35f6a9b486499445c71f148236f986846892d92f4f0a3574a0b39638c709e20bc51d17443f22f4"
+    user_id = "https://vk.com/id556360933"
     fields = 'sex'
     v = '5.103'
 
     query = f"{domain}/friends.get?access_token={access_token}&user_id={user_id}&fields={fields}&v={v}"
     response = get(query)
-    c=int(response.json()['response']['count']) # Нaшли число записей о  друзьях
-    friend_list=[]
-    response=response.json()['response']['items']
-    for i in range(0,c):
+    c = int(response.json()['response']['count']) # Нaшли число записей о  друзьях
+    friend_list = []
+    response = response.json()['response']['items']
+    for i in range(0, c):
         friend_list.append(0)
-    for i in range(0,c):
+    for i in range(0, c):
         try:
-            friend_list[i]=response[i]
-            friend_list[i]=friend_list[i].get(fields)
+            friend_list[i] = response[i]
+            friend_list[i] = friend_list[i].get(fields)
         except KeyError:
-            time.sleep(random.random()*3+1)
+            time.sleep(random.random() * 3 + 1)
             continue
     return friend_list
