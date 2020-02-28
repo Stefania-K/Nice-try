@@ -64,4 +64,11 @@ def clean(s):
 
 
 if __name__ == "__main__":
+    s = session()
+    rows = s.query(News).filter(News.label != None).all()
+    X_train = [clean(row.title).lower() for row in rows]
+    y_train = [row.label for row in rows]
+    model = NaiveBayesClassifier(alpha=0.05)
+    model.fit(X_train, y_train)
+    
     run(host="localhost", port=9998)
