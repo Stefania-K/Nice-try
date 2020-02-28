@@ -4,6 +4,7 @@ from bottle import (
 from scraputils import get_news
 from bd import News, session
 from bayes import NaiveBayesClassifier
+import string
 
 url = 'https://news.ycombinator.com'
 
